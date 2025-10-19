@@ -23,6 +23,22 @@ jobs:
         run: |
           R -e "install.packages('testthat')"
           
-      - name: Run tests
-        run: Rscript private-tests/run_tests.R
-        
+      - name: Run tests and generate report
+        id: autograde
+        run: |
+          cd private-tests
+          Rscript run_tests.R
+          
+          # Проверяем результат
+          if [ $? -eq 0 ]; then
+            echo "result=pass" >> $GITHUB_OUTPUT
+            echo "score=1" >> $GITHUB_OUTPUT
+          else
+            echo "result=fail" >> $GITHUB_OUTPUT  
+            echo "score=0" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Display results
+        run: |
+          echo "Test result: ${{ steps.autograde.outputs.result }}"
+          echo "Score: ${{ steps.autograde.outputs.score }}/1"
