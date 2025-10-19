@@ -26,11 +26,3 @@ jobs:
       - name: Run tests
         run: Rscript private-tests/run_tests.R
         
-      - name: Display results
-        run: |
-          echo "=== TEST RESULTS ==="
-          if [ -f "results/results.csv" ]; then
-            cat results/results.csv
-          else
-            echo "No results file found"
-          fi
