@@ -15,7 +15,8 @@
 
 # Применяйте trimws() к результату парсинга, чтобы избавиться от лишних строк. 
 
-
+install.packages("xml2")
+install.packages("tidyverse")
 library(xml2)
 library(tidyverse)
 
