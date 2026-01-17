@@ -12,7 +12,7 @@ jobs:
       - name: Checkout private tests
         uses: actions/checkout@v3
         with:
-          repository: r-classes-2025/xml-grading-tests
+          repository: r-classes-2025/pca-grading-tests
           token: ${{ secrets.TEST_REPO_TOKEN }}  
           path: private-tests
           
@@ -23,10 +23,12 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
          extra-packages: |
-          dplyr
-          purrr
-          xml2
+          friends
+          tidyverse
+          tidytext
           testthat
+          factoextra
+          ggcheck
           
       - name: Run tests
         run: Rscript private-tests/run_tests.R
