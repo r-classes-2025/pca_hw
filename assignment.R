@@ -2,7 +2,7 @@
 library(friends)
 library(tidyverse)
 library(tidytext)
-library(factoextra)
+library(factoextra) 
 
 
 # 1. отберите 6 главных персонажей (по количеству реплик)
