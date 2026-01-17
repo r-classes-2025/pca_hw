@@ -5,8 +5,7 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      PRIVATE_PAT: ${{ secrets.PRIVATE_PACKAGES_TOKEN }} 
+
     steps:
       - name: Checkout student code
         uses: actions/checkout@v3
@@ -58,20 +57,8 @@ jobs:
           tidytext
           testthat
           factoextra
-          remotes
           
-      - name: Cache GitHub packages
-        uses: actions/cache@v3
-        id: cache-gh-packages
-        with:
-          path: ~/.cache/R/remotes
-          key: ${{ runner.os }}-gh-packages-${{ hashFiles('**/.github/workflows/*.yml') }}
-          
-      - name: Install ggcheck from GitHub
-        if: steps.cache-gh-packages.outputs.cache-hit != 'true'
-        run: |
-          Rscript -e "remotes::install_github('rstudio/ggcheck', upgrade = 'never')" 
-          
+      
       - name: Run tests
         run: Rscript private-tests/run_tests.R
     
