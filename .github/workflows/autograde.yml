@@ -22,13 +22,17 @@ jobs:
       - name: Install R package dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-         extra-packages: |
+         needs: |
           friends
           tidyverse
           tidytext
           testthat
           factoextra
           remotes
+         extra-options: |
+          --option=repos=all
+         remotes: |
+          github::r-lib/ggcheck
           
       - name: Run tests
         run: Rscript private-tests/run_tests.R
