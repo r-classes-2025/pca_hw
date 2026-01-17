@@ -28,7 +28,7 @@ jobs:
           tidytext
           testthat
           factoextra
-          ggcheck
+          remotes
           
       - name: Run tests
         run: Rscript private-tests/run_tests.R
